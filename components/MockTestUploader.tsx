@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Upload } from "lucide-react";
 import { motion } from "framer-motion";
@@ -43,9 +42,12 @@ export default function MockTestUploader() {
             <input type="file" accept=".xlsx" onChange={(e) => setTestFile(e.target.files[0])} />
           </div>
 
-          <Button onClick={handleUpload} className="w-full flex items-center gap-2">
+          <button
+            onClick={handleUpload}
+            className="w-full bg-black text-white rounded-xl px-4 py-2 mt-2 flex items-center justify-center gap-2"
+          >
             <Upload size={16} /> 자동문자 엑셀 만들기
-          </Button>
+          </button>
 
           {submitted && <p className="text-green-600 font-medium">✅ 파일이 성공적으로 생성되었습니다!</p>}
         </CardContent>
