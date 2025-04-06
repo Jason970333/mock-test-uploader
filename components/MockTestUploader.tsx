@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Upload } from "lucide-react";
-import { motion } from "framer-motion";
 
 export default function MockTestUploader() {
   const [testFile, setTestFile] = useState(null);
@@ -31,7 +29,7 @@ export default function MockTestUploader() {
   };
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-6 max-w-xl mx-auto">
+    <div className="p-6 max-w-xl mx-auto">
       <div className="rounded-2xl shadow-md p-6 border border-gray-200">
         <div className="space-y-4">
           <h2 className="text-xl font-semibold">1차 모의고사 자동 문자 생성기</h2>
@@ -43,14 +41,14 @@ export default function MockTestUploader() {
 
           <button
             onClick={handleUpload}
-            className="w-full bg-black text-white rounded-xl px-4 py-2 mt-2 flex items-center justify-center gap-2"
+            className="w-full bg-black text-white rounded-xl px-4 py-2 mt-2"
           >
-            <Upload size={16} /> 자동문자 엑셀 만들기
+            자동문자 엑셀 만들기
           </button>
 
           {submitted && <p className="text-green-600 font-medium">✅ 파일이 성공적으로 생성되었습니다!</p>}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
