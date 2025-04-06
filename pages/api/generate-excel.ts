@@ -21,9 +21,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   form.parse(req, async (err: any, fields: any, files: any) => {
     if (err) return res.status(500).send("Form parsing error");
 
+    if (!files?.test_result || !Array.isArray(files.test_result) || !files.test_result[0]?.filepath) {
+      return res.status(400).send("파일이 업로드되지 않았습니다.");
+    }
+
     const testFilePath = files.test_result[0].filepath;
     const testWorkbook = XLSX.readFile(testFilePath);
-    const testSheet = testWorkbook.Sheets[testWorkbook.SheetNames.at(-1)];
+    const sheetNames = testWorkbook.SheetNames;
+    const lastSheetName = sheetNames[sheetNames.length - 1];
+    const testSheet = testWorkbook.Sheets[lastSheetName];
     const testData = XLSX.utils.sheet_to_json(testSheet, { header: 1 });
 
     const bburioPath = path.join(process.cwd(), "data", "BBURIO.xlsx");
