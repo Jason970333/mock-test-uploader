@@ -1,6 +1,6 @@
 import path from "path";
 import fs from "fs";
-import { NextResponse } from "next/server";
+import { NextApiRequest, NextApiResponse } from "next";
 import { writeFile } from "fs/promises";
 const formidable = require("formidable");
 import * as XLSX from "xlsx";
@@ -11,14 +11,14 @@ export const config = {
   },
 };
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") return res.status(405).send("Method Not Allowed");
 
   const form = new formidable.IncomingForm();
   form.uploadDir = "/tmp";
   form.keepExtensions = true;
 
-  form.parse(req, async (err, fields, files) => {
+  form.parse(req, async (err: any, fields: any, files: any) => {
     if (err) return res.status(500).send("Form parsing error");
 
     const testFilePath = files.test_result[0].filepath;
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
 
     const outputData = [
       ["이름", "휴대폰", "[*1*]", "[*2*]", "[*3*]", "[*4*]", "[*5*]", "[*6*]", "[*7*]", "[*8*]"],
-      ...bburioData.map((row) => [row.이름, row.전화번호, "", "", "", "", "", "", "", ""]),
+      ...bburioData.map((row: any) => [row.이름, row.전화번호, "", "", "", "", "", "", "", ""]),
     ];
 
     const outputWorkbook = XLSX.utils.book_new();
