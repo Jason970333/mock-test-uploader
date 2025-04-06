@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function MockTestUploader() {
-  const [testFile, setTestFile] = useState(null);
+  const [testFile, setTestFile] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
   const handleUpload = async () => {
@@ -36,7 +36,16 @@ export default function MockTestUploader() {
 
           <div>
             <label className="font-medium block mb-1">성적 정오표 파일 (.xlsx)</label>
-            <input type="file" accept=".xlsx" onChange={(e) => setTestFile(e.target.files[0])} />
+            <input
+              type="file"
+              accept=".xlsx"
+              onChange={(e) => {
+                const files = e.target.files;
+                if (files && files.length > 0) {
+                  setTestFile(files[0]);
+                }
+              }}
+            />
           </div>
 
           <button
