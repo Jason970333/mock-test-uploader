@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import { Upload } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -33,8 +32,8 @@ export default function MockTestUploader() {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-6 max-w-xl mx-auto">
-      <Card className="rounded-2xl shadow-md p-6">
-        <CardContent className="space-y-4">
+      <div className="rounded-2xl shadow-md p-6 border border-gray-200">
+        <div className="space-y-4">
           <h2 className="text-xl font-semibold">1차 모의고사 자동 문자 생성기</h2>
 
           <div>
@@ -50,8 +49,8 @@ export default function MockTestUploader() {
           </button>
 
           {submitted && <p className="text-green-600 font-medium">✅ 파일이 성공적으로 생성되었습니다!</p>}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </motion.div>
   );
 }
