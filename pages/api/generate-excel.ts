@@ -2,7 +2,7 @@ import path from "path";
 import fs from "fs";
 import { NextResponse } from "next/server";
 import { writeFile } from "fs/promises";
-import formidable from "formidable";
+const formidable = require("formidable");
 import * as XLSX from "xlsx";
 
 export const config = {
